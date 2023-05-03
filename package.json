@@ -1,0 +1,23 @@
+{
+  "name": "bravosix",
+  "version": "1.0.6",
+  "description": "Modul untuk mengganti warna teks dan latar belakang",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "color",
+    "theme",
+    "webdesign",
+    "night-vision",
+    "black-white",
+    "styling",
+    "color-scheme",
+    "accessibility",
+    "contrast",
+    "user-experience"
+  ],
+  "author": "Khasbullah Nukman Zakin",
+  "license": "ISC"
+}
