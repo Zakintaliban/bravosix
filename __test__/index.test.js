@@ -9,14 +9,14 @@ describe("BravoSix", () => {
     bravoSix = new BravoSix(targetElement);
   });
 
-  test("should set light-mode color theme", () => {
-    bravoSix.applyColors("light-mode");
+  test("should set light color theme", () => {
+    bravoSix.applyColors("light");
     expect(targetElement.style.backgroundColor).toBe("white");
     expect(targetElement.style.color).toBe("black");
   });
 
-  test("should set dark-mode color theme", () => {
-    bravoSix.applyColors("dark-mode");
+  test("should set dark color theme", () => {
+    bravoSix.applyColors("dark");
     expect(targetElement.style.backgroundColor).toBe("black");
     expect(targetElement.style.color).toBe("white");
   });

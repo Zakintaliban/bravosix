@@ -11,6 +11,7 @@ class BravoSix {
   }
 
   applyColors(colorTheme) {
+    console.log("Applying color theme:", colorTheme);
     let backgroundColor, textColor;
 
     switch (colorTheme) {
@@ -18,11 +19,11 @@ class BravoSix {
         backgroundColor = ""; // Kosongkan nilai untuk kembali ke nilai CSS awal
         textColor = "";
         break;
-      case "dark-mode":
+      case "dark":
         backgroundColor = "black";
         textColor = "white";
         break;
-      case "light-mode":
+      case "light":
         backgroundColor = "white";
         textColor = "black";
         break;
