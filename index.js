@@ -18,11 +18,11 @@ class BravoSix {
         backgroundColor = ""; // Kosongkan nilai untuk kembali ke nilai CSS awal
         textColor = "";
         break;
-      case "black-white":
+      case "dark-mode":
         backgroundColor = "black";
         textColor = "white";
         break;
-      case "white-black":
+      case "light-mode":
         backgroundColor = "white";
         textColor = "black";
         break;
