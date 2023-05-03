@@ -25,13 +25,13 @@ const bravoSix = new BravoSix(); // Jika tidak menyediakan argumen, elemen 'body
 3. Gunakan metode applyColors untuk mengganti tema warna:
 
 ```javascript
-bravoSix.applyColors("dark-mode"); // Mengganti tema warna menjadi hitam-putih
+bravoSix.applyColors("dark"); // Mengganti tema warna menjadi hitam-putih
 ```
 
 ### Tema Warna
 
-- `"dark-mode"`: latar belakang hitam dan teks putih
-- `"light-mode"`: latar belakang putih dan teks hitam
+- `"dark"`: latar belakang hitam dan teks putih
+- `"light"`: latar belakang putih dan teks hitam
 - `"night-vision"`: latar belakang _teal_ (#367978, terinspirasi dari Call of Duty©) dan teks putih
 
 ## Contoh Penggunaan di Aplikasi React
@@ -50,12 +50,12 @@ function App() {
     let newTheme;
     switch (colorTheme) {
       case "original":
-        newTheme = "dark-mode";
+        newTheme = "dark";
         break;
-      case "dark-mode":
-        newTheme = "light-mode";
+      case "dark":
+        newTheme = "light";
         break;
-      case "light-mode":
+      case "light":
         newTheme = "night-vision";
         break;
       case "night-vision":
