@@ -1,6 +1,7 @@
 # BravoSix
 
-Modul untuk mengganti warna teks dan latar belakang di aplikasi React.
+Bravo Six adalah modul Node yang memungkinkan Anda mengganti tema warna elemen HTML dengan mudah.
+
 
 ## Instalasi
 
