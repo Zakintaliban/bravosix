@@ -1,20 +1,18 @@
-import { getOriginalStyles, applyColors } from "./src/styles.js";
-import { applyGoingDarkAnimation } from "./src/goingdark";
+import { applyGoingDarkAnimation } from "./goingdark.js";
+import { getOriginalStyles, applyColors } from "./styles.js";
+
 class BravoSix {
   constructor(targetElement) {
     this.targetElement = targetElement || document.body;
-  }
-
-  getOriginalStyles() {
-    return getOriginalStyles(this.targetElement);
+    this.originalStyles = getOriginalStyles(this.targetElement);
   }
 
   applyColors(colorTheme) {
     applyColors(this.targetElement, colorTheme);
   }
 
-  goingDark() {
-    applyGoingDarkAnimation(this.targetElement);
+  goingDark(duration) {
+    applyGoingDarkAnimation(this.targetElement, duration);
   }
 }
 
