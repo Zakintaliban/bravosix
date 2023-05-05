@@ -13,6 +13,7 @@ export function applyGoingDarkAnimation(targetElement, duration = 1000) {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0);
         animation: going-dark-animation ${duration}ms forwards;
+        z-index: -1;
       }
 
       @keyframes going-dark-animation {
@@ -33,8 +34,15 @@ export function applyGoingDarkAnimation(targetElement, duration = 1000) {
     document.head.appendChild(style);
   }
 
-  targetElement.classList.add("going-dark-overlay");
+  // Create overlay element
+  const overlayElement = document.createElement("div");
+  overlayElement.className = "going-dark-overlay";
+
+  // Add overlay element to target element
+  targetElement.appendChild(overlayElement);
+
+  // Remove overlay element after animation
   setTimeout(() => {
-    targetElement.classList.remove("going-dark-overlay");
+    targetElement.removeChild(overlayElement);
   }, duration);
 }
