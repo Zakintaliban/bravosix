@@ -1,5 +1,5 @@
-import { applyGoingDarkAnimation } from "./goingdark.js";
-import { getOriginalStyles, applyColors } from "./styles.js";
+import { applyGoingDarkAnimation } from "./src/goingdark.js";
+import { getOriginalStyles, applyColors } from "./src/styles.js";
 
 class BravoSix {
   constructor(targetElement) {
