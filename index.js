@@ -18,4 +18,4 @@ class BravoSix {
   }
 }
 
-module.exports = BravoSix;
+export default BravoSix;

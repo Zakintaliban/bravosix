@@ -1,4 +1,4 @@
-import "./goingDark.css";
+import "./goingdark.css";
 
 export function applyGoingDarkAnimation(targetElement) {
   targetElement.classList.add("going-dark");
