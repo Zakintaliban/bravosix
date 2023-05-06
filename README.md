@@ -1,88 +1,134 @@
 # BravoSix
 
-Bravo Six adalah modul Node yang memungkinkan Anda mengganti tema warna elemen HTML dengan mudah.
+BravoSix adalah pustaka JavaScript untuk mengganti tema warna elemen HTML dengan animasi efek "going dark" seperti night vision.
 
 ## Instalasi
+
+Anda dapat menginstal BravoSix melalui NPM:
 
 ```bash
 npm install bravosix
 ```
 
-## Penggunaan
+## Cara Penggunaan
 
-1. Import module BravoSix:
+Berikut adalah contoh penggunaan BravoSix dalam aplikasi React:
+
+1. Import BravoSix
 
 ```javascript
 import BravoSix from "bravosix";
 ```
 
-2. Buat instance BravoSix, opsional dengan menyediakan elemen target untuk mengganti warna:
+2. Buat instance BravoSix
 
 ```javascript
-const bravoSix = new BravoSix(); // Jika tidak menyediakan argumen, elemen 'body' akan menjadi target
+const bravosix = new BravoSix();
 ```
 
-3. Gunakan metode applyColors untuk mengganti tema warna:
+3. Gunakan metode `applyColors(colorTheme)`
+
+Metode ini mengganti tema warna elemen tanpa animasi.
 
 ```javascript
-bravoSix.applyColors("dark"); // Mengganti tema warna menjadi hitam-putih
+bravosix.applyColors(colorTheme);
 ```
 
-### Tema Warna
+`colorTheme` dapat berupa:
 
-- `"dark"`: latar belakang hitam dan teks putih
-- `"light"`: latar belakang putih dan teks hitam
-- `"night-vision"`: latar belakang _teal_ (#367978, terinspirasi dari Call of Duty©) dan teks putih
+- "original"
+- "dark"
+- "light"
+- "night-vision" terinspirasi dari night vision di game Call of Duty: Modern Warfare II (2022)
 
-## Contoh Penggunaan di Aplikasi React
-
-`App.js`;
+Contoh menggunakan `applyColors` dalam aplikasi React:
 
 ```javascript
-import React, { useState } from "react";
+const handleButtonClick = () => {
+  let newTheme;
+  switch (colorTheme) {
+    case "original":
+      newTheme = "dark";
+      break;
+    case "dark":
+      newTheme = "light";
+      break;
+    case "light":
+      newTheme = "original";
+      break;
+    default:
+      newTheme = "original";
+  }
+  setColorTheme(newTheme);
+  setIsNightVision(false);
+  bravosix.applyColors(newTheme);
+};
+```
+
+4. Gunakan metode `goingDark()`
+
+Metode ini memulai animasi efek "going dark" dan mengganti tema warna menjadi night vision.
+
+```javascript
+bravosix.goingDark();
+```
+
+Contoh lengkap dengan `applyColors` dan `goingDark`:
+
+```javascript
+import React, { useState, useEffect } from "react";
+import "./App.css";
 import BravoSix from "bravosix";
 
 function App() {
-  const [colorTheme, setColorTheme] = useState("original");
-  const bravoSix = new BravoSix();
+const [colorTheme, setColorTheme] = useState("original");
+const [isNightVision, setIsNightVision] = useState(false);
+const [bravosix, setBravosix] = useState(null);
 
-  const handleButtonClick = () => {
-    let newTheme;
-    switch (colorTheme) {
-      case "original":
-        newTheme = "dark";
-        break;
-      case "dark":
-        newTheme = "light";
-        break;
-      case "light":
-        newTheme = "night-vision";
-        break;
-      case "night-vision":
-        newTheme = "original";
-        break;
-      default:
-        newTheme = "original";
-    }
-    setColorTheme(newTheme);
-    bravoSix.applyColors(newTheme);
-  };
+useEffect(() => {
+setBravosix(new BravoSix());
+}, []);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Klik tombol di bawah untuk mengganti tema warna:</p>
-        <button onClick={handleButtonClick}>Ganti Tema Warna</button>
-      </header>
-    </div>
-  );
+const handleButtonClick = () => {
+let newTheme;
+switch (colorTheme) {
+case "original":
+newTheme = "dark";
+break;
+case "dark":
+newTheme = "light";
+break;
+case "light":
+newTheme = "original";
+break;
+default:
+newTheme = "original";
 }
+setColorTheme(newTheme);
+setIsNightVision(false);
+bravosix.applyColors(newTheme);
+};
 
-export default App;
+const handleGoingDarkClick = () => {
+if (isNightVision) {
+setColorTheme("original");
+setIsNightVision(false);
+bravosix.applyColors("original");
+} else {
+setIsNightVision(true);
+bravosix.goingDark();
+}
+};
+
+return (
+
+<div className="App">
+<header className="App-header">
+<h1>Klik tombol di bawah untuk mengganti tema warna:</h1>
+<button onClick={handleButtonClick}>Ganti Tema Warna</button>
+<button onClick={handleGoingDarkClick}>
+{isNightVision ? "Kembali ke Original" : "Going Dark"}
+</button>
+</header>
+</div>
 ```
-
-berikut yang kurang:
-
-- animasinya harus berbentuk bulat
-
-- setelah animasi selesai, langsung warna berubah menjadi night vision, jadi kek function untuk night vision dipanggil, gitu loh
