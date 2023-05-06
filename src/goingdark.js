@@ -1,40 +1,48 @@
-export function applyGoingDarkAnimation(targetElement) {
-  const animationStyle = document.createElement("style");
-  animationStyle.innerHTML = `
-    @keyframes going-dark {
-      0% {
+export function applyGoingDarkAnimation(targetElement, duration = 1000) {
+  if (!document.getElementById("going-dark-styles")) {
+    const style = document.createElement("style");
+    style.id = "going-dark-styles";
+    style.innerText = `
+      .going-dark-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: white;
         opacity: 0;
-        transform: scale(0);
+        transform: translate(-50%, -50%) scale(0);
+        animation: going-dark-animation ${duration}ms forwards;
+        z-index: -1;
       }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: scale(100);
-        opacity: 0;
-      }
-    }
 
-    .going-dark::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background-color: white;
-      border-radius: 50%;
-      width: 100%;
-      height: 100%;
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      z-index: 1000;
-      animation: going-dark 1.5s;
-    }
-  `;
-  document.head.appendChild(animationStyle);
+      @keyframes going-dark-animation {
+        0% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
-  targetElement.classList.add("going-dark");
+  // Create overlay element
+  const overlayElement = document.createElement("div");
+  overlayElement.className = "going-dark-overlay";
+
+  // Add overlay element to target element
+  targetElement.appendChild(overlayElement);
+
+  // Remove overlay element after animation
   setTimeout(() => {
-    targetElement.classList.remove("going-dark");
-    document.head.removeChild(animationStyle);
-  }, 1500);
+    targetElement.removeChild(overlayElement);
+  }, duration);
 }

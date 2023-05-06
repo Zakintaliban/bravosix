@@ -11,8 +11,8 @@ class BravoSix {
     applyColors(this.targetElement, colorTheme);
   }
 
-  goingDark(duration, callback) {
-    applyGoingDarkAnimation(this.targetElement, duration, callback);
+  goingDark(duration) {
+    applyGoingDarkAnimation(this.targetElement, duration);
   }
 }
 
