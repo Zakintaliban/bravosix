@@ -81,54 +81,57 @@ import "./App.css";
 import BravoSix from "bravosix";
 
 function App() {
-const [colorTheme, setColorTheme] = useState("original");
-const [isNightVision, setIsNightVision] = useState(false);
-const [bravosix, setBravosix] = useState(null);
+  const [colorTheme, setColorTheme] = useState("original");
+  const [isNightVision, setIsNightVision] = useState(false);
+  const [bravosix, setBravosix] = useState(null);
 
-useEffect(() => {
-setBravosix(new BravoSix());
-}, []);
+  useEffect(() => {
+    setBravosix(new BravoSix());
+  }, []);
 
-const handleButtonClick = () => {
-let newTheme;
-switch (colorTheme) {
-case "original":
-newTheme = "dark";
-break;
-case "dark":
-newTheme = "light";
-break;
-case "light":
-newTheme = "original";
-break;
-default:
-newTheme = "original";
+  const handleButtonClick = () => {
+    let newTheme;
+    switch (colorTheme) {
+      case "original":
+        newTheme = "dark";
+        break;
+      case "dark":
+        newTheme = "light";
+        break;
+      case "light":
+        newTheme = "original";
+        break;
+      default:
+        newTheme = "original";
+    }
+    setColorTheme(newTheme);
+    setIsNightVision(false);
+    bravosix.applyColors(newTheme);
+  };
+
+  const handleGoingDarkClick = () => {
+    if (isNightVision) {
+      setColorTheme("original");
+      setIsNightVision(false);
+      bravosix.applyColors("original");
+    } else {
+      setIsNightVision(true);
+      bravosix.goingDark();
+    }
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Klik tombol di bawah untuk mengganti tema warna:</h1>
+        <button onClick={handleButtonClick}>Ganti Tema Warna</button>
+        <button onClick={handleGoingDarkClick}>
+          {isNightVision ? "Kembali ke Original" : "Going Dark"}
+        </button>
+      </header>
+    </div>
+  );
 }
-setColorTheme(newTheme);
-setIsNightVision(false);
-bravosix.applyColors(newTheme);
-};
 
-const handleGoingDarkClick = () => {
-if (isNightVision) {
-setColorTheme("original");
-setIsNightVision(false);
-bravosix.applyColors("original");
-} else {
-setIsNightVision(true);
-bravosix.goingDark();
-}
-};
-
-return (
-
-<div className="App">
-<header className="App-header">
-<h1>Klik tombol di bawah untuk mengganti tema warna:</h1>
-<button onClick={handleButtonClick}>Ganti Tema Warna</button>
-<button onClick={handleGoingDarkClick}>
-{isNightVision ? "Kembali ke Original" : "Going Dark"}
-</button>
-</header>
-</div>
+export default App;
 ```
