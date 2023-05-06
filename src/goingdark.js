@@ -1,4 +1,4 @@
-export function applyGoingDarkAnimation(targetElement, callback) {
+export function applyGoingDarkAnimation(targetElement, duration, callback) {
   const animationStyle = document.createElement("style");
   animationStyle.innerHTML = `
     @keyframes going-dark {
@@ -27,7 +27,7 @@ export function applyGoingDarkAnimation(targetElement, callback) {
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
       z-index: 1000;
-      animation: going-dark 1.5s;
+      animation: going-dark ${duration}s;
     }
   `;
   document.head.appendChild(animationStyle);
@@ -39,5 +39,5 @@ export function applyGoingDarkAnimation(targetElement, callback) {
     if (callback) {
       callback();
     }
-  }, 1500);
+  }, duration * 1000);
 }
