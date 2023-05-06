@@ -2,7 +2,6 @@
 
 Bravo Six adalah modul Node yang memungkinkan Anda mengganti tema warna elemen HTML dengan mudah.
 
-
 ## Instalasi
 
 ```bash
@@ -81,3 +80,9 @@ function App() {
 
 export default App;
 ```
+
+berikut yang kurang:
+
+- animasinya harus berbentuk bulat
+
+- setelah animasi selesai, langsung warna berubah menjadi night vision, jadi kek function untuk night vision dipanggil, gitu loh
