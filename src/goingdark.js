@@ -1,4 +1,10 @@
-export function applyGoingDarkAnimation(targetElement, duration = 1000) {
+import { applyColors } from "./styles";
+
+export function applyGoingDarkAnimation(
+  targetElement,
+  duration = 1000,
+  callback
+) {
   if (!document.getElementById("going-dark-styles")) {
     const style = document.createElement("style");
     style.id = "going-dark-styles";
@@ -7,10 +13,11 @@ export function applyGoingDarkAnimation(targetElement, duration = 1000) {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 100%;
-        height: 100%;
+        width: 200%;
+        height: 200%;
         background-color: white;
         opacity: 0;
+        border-radius: 50%;
         transform: translate(-50%, -50%) scale(0);
         animation: going-dark-animation ${duration}ms forwards;
         z-index: -1;
@@ -41,8 +48,10 @@ export function applyGoingDarkAnimation(targetElement, duration = 1000) {
   // Add overlay element to target element
   targetElement.appendChild(overlayElement);
 
-  // Remove overlay element after animation
+  // Remove overlay element after animation and change background color
   setTimeout(() => {
     targetElement.removeChild(overlayElement);
+    applyColors(targetElement, "night-vision");
+    if (callback) callback();
   }, duration);
 }
