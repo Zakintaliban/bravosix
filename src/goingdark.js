@@ -28,7 +28,7 @@ export function applyGoingDarkAnimation(
           opacity: 1;
           transform: translate(-50%, -50%) scale(0);
         }
-        50% {
+        90% {
           opacity: 1;
           transform: translate(-50%, -50%) scale(1);
         }
@@ -53,5 +53,5 @@ export function applyGoingDarkAnimation(
     targetElement.removeChild(overlayElement);
     applyColors(targetElement, "night-vision");
     if (callback) callback();
-  }, duration);
+  }, duration * 0.9);
 }
