@@ -1,57 +1,43 @@
-import { applyColors } from "./styles";
-
-export function applyGoingDarkAnimation(
-  targetElement,
-  duration = 1000,
-  callback
-) {
-  if (!document.getElementById("going-dark-styles")) {
-    const style = document.createElement("style");
-    style.id = "going-dark-styles";
-    style.innerText = `
-      .going-dark-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 200%;
-        height: 200%;
-        background-color: white;
+export function applyGoingDarkAnimation(targetElement, callback) {
+  const animationStyle = document.createElement("style");
+  animationStyle.innerHTML = `
+    @keyframes going-dark {
+      0% {
         opacity: 0;
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        animation: going-dark-animation ${duration}ms forwards;
-        z-index: -1;
+        transform: scale(0);
       }
-
-      @keyframes going-dark-animation {
-        0% {
-          opacity: 1;
-          transform: translate(-50%, -50%) scale(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translate(-50%, -50%) scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(1);
-        }
+      90% {
+        opacity: 1;
       }
-    `;
-    document.head.appendChild(style);
-  }
+      100% {
+        transform: scale(100);
+        opacity: 0;
+      }
+    }
 
-  // Create overlay element
-  const overlayElement = document.createElement("div");
-  overlayElement.className = "going-dark-overlay";
+    .going-dark::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: white;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      z-index: 1000;
+      animation: going-dark 1.5s;
+    }
+  `;
+  document.head.appendChild(animationStyle);
 
-  // Add overlay element to target element
-  targetElement.appendChild(overlayElement);
-
-  // Remove overlay element after animation and change background color
+  targetElement.classList.add("going-dark");
   setTimeout(() => {
-    targetElement.removeChild(overlayElement);
-    applyColors(targetElement, "night-vision");
-    if (callback) callback();
-  }, duration);
+    targetElement.classList.remove("going-dark");
+    document.head.removeChild(animationStyle);
+    if (callback) {
+      callback();
+    }
+  }, 1500);
 }
