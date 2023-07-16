@@ -1,6 +1,6 @@
 {
   "name": "bravosix",
-  "version": "2.3.2",
+  "version": "2.4.2",
   "description": "Modul untuk mengganti warna teks dan latar belakang",
   "main": "index.js",
   "scripts": {
