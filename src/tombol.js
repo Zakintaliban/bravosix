@@ -1,5 +1,3 @@
-// src/tombol.js
-
 const tombolCSS = `
   /* tombol.css content here */
   .tombol {
@@ -24,5 +22,9 @@ const tombolCSS = `
     box-shadow: 0 0 0 3px rgba(121, 217, 255, 0.5);
   }
 `;
+
+const styleElement = document.createElement("style");
+styleElement.innerHTML = tombolCSS;
+document.head.appendChild(styleElement);
 
 export default tombolCSS;
